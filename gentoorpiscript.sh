@@ -63,6 +63,11 @@ echo "dwc_otg.lpm_enable=0 console=ttyAMA0,115200 kgdboc=ttyAMA0,115200 console=
 cp /mnt/gentoo/usr/share/zoneinfo/Asia/Riyadh /mnt/gentoo/etc/localtime
 echo "Asia/Riyadh" > /mnt/gentoo/etc/timezone
 
+# see http://forums.gentoo.org/viewtopic-t-979638-start-0.html
+echo -e "VIDEO_CARDS=\"exynos\"" >> /mnt/gentoo/usr/portage/make.conf
+echo -e ">=x11-libs/libdrm-2.4.46 libkms" >> /mnt/gentoo/usr/portage/package.use
+
+
 nano /mnt/gentoo/etc/shadow
 
 umount "/dev/${DEVICEID}1"
