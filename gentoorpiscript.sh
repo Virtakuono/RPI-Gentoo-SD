@@ -70,6 +70,32 @@ echo -e ">=x11-libs/libdrm-2.4.46 libkms" >> /mnt/gentoo/usr/portage/package.use
 
 nano /mnt/gentoo/etc/shadow
 
+cat -e "#!/bin/bash" > /mnt/gentoo/root/initialconfig.sh
+cat -e "cd /etc/init.d/" >> /mnt/gentoo/root/initialconfig.sh
+cat -e "cp net.lo net.eth0" >> /mnt/gentoo/root/initialconfig.sh
+
+cat -e "rc-config start net.eth0" >> /mnt/gentoo/root/initialconfig.sh
+cat -e "rc-config add net.eth0 boot" >> /mnt/gentoo/root/initialconfig.sh
+
+cat -e "eselect profile set 26" >> /mnt/gentoo/root/initialconfig.sh
+
+cat -e "nano /etc/rc.conf" >> /mnt/gentoo/root/initialconfig.sh
+
+cat -e "rc-update add swclock" >> /mnt/gentoo/root/initialconfig.sh
+cat -e "rc-update del hwclock" >> /mnt/gentoo/root/initialconfig.sh
+
+cat -e "date 021004212014" >> /mnt/gentoo/root/initialconfig.sh
+
+cat -e "emerge --ask htop ntp" >> /mnt/gentoo/root/initialconfig.sh
+
+cat -e "rc-update add ntp-client default" >> /mnt/gentoo/root/initialconfig.sh
+
+cat -e "rc-update add sshd default" >> /mnt/gentoo/root/initialconfig.sh
+cat -e "/etc/init.d/sshd start" >> /mnt/gentoo/root/initialconfig.sh
+
+cat -e "emerge --ask raspberrypi-userland" >> /mnt/gentoo/root/initialconfig.sh
+
+
 umount "/dev/${DEVICEID}1"
 umount "/dev/${DEVICEID}3"
 
